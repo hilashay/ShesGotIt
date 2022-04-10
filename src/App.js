@@ -3,15 +3,14 @@ import './App.css';
 import homepage from './homepage.jpeg';
 import hand from './hand.png';
 import bags from './bags.png';
-import React from "react";
-// import {
-//   BrowserRouter as Router, Navigate,
-//   Route
-// } from "react-router-dom";
-// import reviews from "./reviews.js";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router, Navigate,
+  Route, Routes, Link
+} from "react-router-dom";
+import reviews from "./reviews.js";
 
-
-function App() {
+function HomePage() {
   // console.log("logo:", logo);
   return (
     <div className="App">
@@ -19,11 +18,17 @@ function App() {
         <img src={first} className="App-logo" alt="Logo" />
         <br />
         <div className="hr"></div>
-        <ul>
-          <li><a href="#App">Home</a></li>
-          <li><a href="#reviews">reviews</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <nav>
+          <Link to="/about">About</Link>
+        </nav>
+        {/* <a href="https://www.ynet.co.il">ynet</a>
+        <nav>
+          <ul>
+            <li><Link to="/about">About</Link></li>
+            <li><a href="#reviews">reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav> */}
         <img src={homepage} className="App-main-img" alt="Logo" />
       </header>
 
@@ -83,8 +88,42 @@ function App() {
       </footer>
 
     </div >
+
+
   );
 }
+
+function About() {
+  return (
+    <>
+      <main>
+        <h2>Who are we?</h2>
+        <p>
+          That feels like an existential question, don't you
+          think?
+        </p>
+      </main>
+      <nav>
+        <Link to="/">Home</Link>
+      </nav>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <div className="App">
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+    </div >
+
+
+  );
+}
+
 
 
 
