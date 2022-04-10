@@ -1,21 +1,22 @@
+* {
+  color: black;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  text-align: center;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 13vmin;
+  border-radius: 50%;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #fdfcf9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +24,118 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.App-body {
+  background-color: #fdfcf9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hr {
+  background-color: black;
+  height: 1px;
+  width: 50%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  font-size: medium;
+  font-family: "Courier New", Courier, monospace;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin-bottom: 50px;
+}
+
+li a:hover {
+  font-weight: bold;
+}
+
+h1 {
+  font-weight: lighter;
+  font-size: 50px;
+}
+
+h2 {
+  font-weight: lighter;
+  font-size: 30px;
+  line-height: 0px;
+}
+
+.first-p {
+  text-align: center;
+  width: 1000px;
+}
+
+.btn-dress-me {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: rgba(133, 78, 46, 0.739);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-dress-me:hover {
+  background-color: rgb(187, 150, 121);
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.process-container {
+  width: 1000px;
+  padding: 100px;
+}
+
+.hand-img {
+  height: 400px;
+  display: flex;
+  justify-content: left;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hand-text {
+  text-align: left;
+}
+
+.bags-img {
+  height: 400px;
+  display: inline-block;
+  text-align: right;
+  margin-left: 650px;
+  /* float: right; */
+}
+
+.bags-text {
+  text-align: right;
+}
+
+footer p {
+  font-size: 13px;
+}
+/* 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
 
 .App-link {
   color: #61dafb;
