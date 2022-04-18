@@ -3,16 +3,19 @@ import './App.css';
 import homepage from './homepage.jpeg';
 import hand from './hand.png';
 import bags from './bags.png';
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import {
   BrowserRouter as Router, Navigate,
-  Route, Routes, Link
+  Route, Routes, Link, Outlet, useNavigate
 } from "react-router-dom";
-import reviews from "./reviews.js";
-import About from './About'
+
+import Reviews from './routes/reviews';
+import About from './routes/about';
+import DressMe from './routes/dressme';
 
 function HomePage() {
   // console.log("logo:", logo);
+  let navigate = useNavigate()
   return (
     <div className="App">
       <header className="App-header">
@@ -20,8 +23,10 @@ function HomePage() {
         <br />
         <div className="hr"></div>
         <nav>
-          <Link to="/about">About</Link>
+          <Link to="/about">About</Link>{" "}
+          <Link to="/reviews">Reviews</Link>
         </nav>
+
         {/* <a href="https://www.ynet.co.il">ynet</a>
         <nav>
           <ul>
@@ -66,8 +71,8 @@ function HomePage() {
 
         </p>
 
-        <div className="btn-dress-me">Dress me!</div>
-
+        <div className="btn-dress-me" onClick={() => navigate("dressme")}>Dress me!</div>
+        <Outlet />
         <br />
 
         <h3>
@@ -99,8 +104,12 @@ function App() {
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} >
+          <Route path="dressme" element={<DressMe />} />
+        </Route>
         <Route path="about" element={<About />} />
+        <Route path="reviews" element={<Reviews />} />
+
       </Routes>
     </div >
 

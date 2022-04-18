@@ -1,5 +1,7 @@
-import './Reviews.css';
+import '../Reviews.css';
 import React from "react"
+import { Link } from "react-router-dom";
+
 // import {
 //     BrowserRouter as Router, Switch,
 //     Route, Redirect,
@@ -7,13 +9,17 @@ import React from "react"
 // import App from "./App.js";
 
 
-function reviews() {
+function Reviews() {
+    return(
     <div className="reviews-container">
         <header>
             <h1>reviews</h1>
         </header>
-
+        <nav>
+          <Link to="/">Home</Link>
+        </nav>
     </div>
+    )
 }
 
-export default reviews;
+export default Reviews;
