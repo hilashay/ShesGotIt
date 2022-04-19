@@ -2,21 +2,22 @@ import { useState } from "react";
 import { BrowserRouter as Router, Navigate, Route, Routes, Link, Outlet } from "react-router-dom";
 
 function DressMe(props) {
-  const [value, setValue] = useState("");
+  const [name, setName] = useState("");
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setName(event.target.value);
   };
 
   const handleSubmit = (event) => {
-    alert("A name was submitted: " + value);
+    alert("A name was submitted: " + name);
     event.preventDefault();
+    setName("");
   };
 
   return (
     <div>
       <main>
-        <h2>DRESS MEE2</h2>
+        <h2>DRESS ME</h2>
       </main>
       <nav>
         <Link to="/">Home</Link>
@@ -24,7 +25,7 @@ function DressMe(props) {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input type="text" value={value} onChange={handleChange} />
+          <input type="text" value={name} onChange={handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
