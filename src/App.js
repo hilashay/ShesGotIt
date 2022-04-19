@@ -74,7 +74,7 @@ function HomePage() {
         <div className="btn-dress-me" onClick={() => navigate("dressme")}>
           Dress me!
         </div>
-        <Outlet />
+        {/* <Outlet /> */}
         <br />
 
         <h3>What am I actually doing?</h3>
@@ -103,9 +103,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="dressme" element={<DressMe />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="dressme" element={<DressMe />} />
         <Route path="about" element={<About />} />
         <Route path="reviews" element={<Reviews />} />
       </Routes>
