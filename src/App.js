@@ -31,14 +31,6 @@ function HomePage() {
           <Link to="/about">About</Link> <Link to="/reviews">Reviews</Link>
         </nav>
 
-        {/* <a href="https://www.ynet.co.il">ynet</a>
-        <nav>
-          <ul>
-            <li><Link to="/about">About</Link></li>
-            <li><a href="#reviews">reviews</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav> */}
         <img src={homepage} className="App-main-img" alt="Logo" />
       </header>
 

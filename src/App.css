@@ -1,8 +1,10 @@
 * {
+  /* display: flex; */
   color: black;
   font-family: "Courier New", Courier, monospace;
   font-size: 18px;
   text-align: center;
+  justify-content: center;
 }
 
 .App {
