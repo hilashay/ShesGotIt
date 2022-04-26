@@ -25,6 +25,12 @@ function DressMe(props) {
     console.log("value: ", e.target.value);
   };
 
+  // const rangeSelector = (event, newValue) => {
+  //   setBudget(newValue);
+  //   document.getElementById("demo").innerHTML = "I have changed!";
+  //   console.log(newValue);
+  // };
+
   const handleSubmit = (event) => {
     if (isNaN(phone)) {
       alert("Phone number is not valid, type numbers");
@@ -202,9 +208,18 @@ function DressMe(props) {
         <br></br>
         <br></br>
         <label for="budget">Budget</label>
-        <input type="range" id="budget" name="budget" min={0} max={10000} />
+        <input
+          type="range"
+          id="budget"
+          name="budget"
+          onChange={(e) => setBudget(e.target.value)}
+          min={0}
+          max={10000}
+        />
+        <div>{budget}</div>
         <br></br>
         <br></br>
+
         <input type="submit" value="Submit" />
       </form>
     </div>
