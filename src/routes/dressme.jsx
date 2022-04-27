@@ -1,15 +1,26 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Navigate, Route, Routes, Link, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+  Link,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
+import Success from "./success";
 
 function DressMe(props) {
+  let navigate = useNavigate();
+  // const [stateObject, setStateObject] = useState({name: "", lastName: ""});
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [shirtSize, setShirtSize] = useState("");
-  const [pantsSize, setPantsSize] = useState("");
-  const [neverWear, setNeverWear] = useState("");
-  // const [alwaysWear, setAlwaysWear] = useState("");
+  const [shirtSize, setShirtSize] = useState("XXS");
+  const [pantsSize, setPantsSize] = useState("36");
+  const [neverWear, setNeverWear] = useState("Skinny");
+
   const [allValues, setAllValues] = useState({
     skinny: "",
     tight: "",
@@ -19,6 +30,7 @@ function DressMe(props) {
     other: "",
   });
   const [budget, setBudget] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const changeHandler = (e) => {
     setAllValues({ ...allValues, [e.target.name]: e.target.value });
@@ -46,15 +58,18 @@ function DressMe(props) {
       console.log("Always Wear: " + JSON.stringify(allValues));
       console.log("Budget " + budget);
       event.preventDefault();
-      setName("");
-      setLastName("");
-      setPhone("");
-      setAddress("");
-      setShirtSize("");
-      setPantsSize("");
-      setNeverWear("");
-      setAllValues("");
-      setBudget("");
+      // setName("");
+      // setLastName("");
+      // setPhone("");
+      // setAddress("");
+      // setShirtSize("XXS");
+      // setPantsSize("36");
+      // setNeverWear("Skinny");
+      // setAllValues("");
+      // setBudget("");
+
+      // navigate("success");
+      setIsSubmitted(true);
     } else {
       alert("You have to fill all the fields");
       event.preventDefault();
@@ -74,7 +89,18 @@ function DressMe(props) {
   // כפתור ”סיימתי“- (אופציה: יציג את הטופס מוכן)
   // כפתור- ”שלח“ - גרסא ראשונה - ידפיס לקונסול את הערכים + עובר למסך הצלחה
 
-  return (
+  return isSubmitted ? (
+    <Success
+      name={name}
+      lastName={lastName}
+      phone={phone}
+      address={address}
+      shirtSize={shirtSize}
+      pantsSize={pantsSize}
+      neverWear={neverWear}
+      budget={budget}
+    />
+  ) : (
     <div>
       <main>
         <h2>DRESS ME</h2>
@@ -110,7 +136,7 @@ function DressMe(props) {
         <label>
           Shirt Size:
           <select className="option" onChange={(e) => setShirtSize(e.target.value)}>
-            <option onClick={() => setShirtSize("XXS")}>XXS </option>
+            <option>XXS</option>
             <option>XS</option>
             <option>S</option>
             <option>M</option>
@@ -210,6 +236,7 @@ function DressMe(props) {
         <label for="budget">Budget</label>
         <input
           type="range"
+          step={300}
           id="budget"
           name="budget"
           onChange={(e) => setBudget(e.target.value)}
@@ -220,7 +247,7 @@ function DressMe(props) {
         <br></br>
         <br></br>
 
-        <input type="submit" value="Submit" />
+        <input type="submit" />
       </form>
     </div>
   );

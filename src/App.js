@@ -17,6 +17,7 @@ import {
 import Reviews from "./routes/reviews";
 import About from "./routes/about";
 import DressMe from "./routes/dressme";
+import Success from "./routes/success";
 
 function HomePage() {
   // console.log("logo:", logo);
@@ -99,6 +100,7 @@ function App() {
         <Route path="dressme" element={<DressMe />} />
         <Route path="about" element={<About />} />
         <Route path="reviews" element={<Reviews />} />
+        <Route path="dressme/success" element={<Success name={"idab"} />} />
       </Routes>
     </div>
   );
