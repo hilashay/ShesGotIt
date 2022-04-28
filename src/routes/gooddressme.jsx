@@ -13,16 +13,13 @@ import Success from "./success";
 function DressMe(props) {
   let navigate = useNavigate();
 
-  const [details, setDetails] = useState({
-    name: "",
-    lastName: "",
-    phone: "",
-    address: "",
-    shirtSize: "",
-    pantsSize: "",
-    neverWear: "",
-    budget: "",
-  });
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [shirtSize, setShirtSize] = useState("XXS");
+  const [pantsSize, setPantsSize] = useState("36");
+  const [neverWear, setNeverWear] = useState("Skinny");
 
   const [allValues, setAllValues] = useState({
     skinny: "",
@@ -32,7 +29,7 @@ function DressMe(props) {
     someColor: "",
     other: "",
   });
-
+  const [budget, setBudget] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const changeHandler = (e) => {
@@ -41,20 +38,29 @@ function DressMe(props) {
   };
 
   const handleSubmit = (event) => {
-    if (isNaN(details.phone)) {
+    if (isNaN(phone)) {
       alert("Phone number is not valid, type numbers");
     }
-    if (details.phone) {
-      console.log("Name: " + details.name);
-      console.log("Last Name: " + details.lastName);
-      console.log("Phone Number: " + details.phone);
-      console.log("Full Adress: " + details.address);
-      console.log("Shirt Size: " + details.shirtSize);
-      console.log("Pants Size: " + details.pantsSize);
-      console.log("Never Wear: " + details.neverWear);
+    if (name && lastName && phone) {
+      console.log("Name: " + name);
+      console.log("Last Name: " + lastName);
+      console.log("Phone Number: " + phone);
+      console.log("Full Adress: " + address);
+      console.log("Shirt Size: " + shirtSize);
+      console.log("Pants Size: " + pantsSize);
+      console.log("Never Wear: " + neverWear);
       console.log("Always Wear: " + JSON.stringify(allValues));
-      console.log("Budget " + details.budget);
+      console.log("Budget " + budget);
       event.preventDefault();
+      setName("");
+      setLastName("");
+      setPhone("");
+      setAddress("");
+      setShirtSize("XXS");
+      setPantsSize("36");
+      setNeverWear("Skinny");
+      setAllValues("");
+      setBudget("");
 
       setIsSubmitted(true);
     } else {
@@ -62,8 +68,18 @@ function DressMe(props) {
       event.preventDefault();
     }
   };
+
   return isSubmitted ? (
-    <Success details={details} />
+    <Success
+      name={name}
+      lastName={lastName}
+      phone={phone}
+      address={address}
+      shirtSize={shirtSize}
+      pantsSize={pantsSize}
+      neverWear={neverWear}
+      budget={budget}
+    />
   ) : (
     <div>
       <main>
@@ -75,31 +91,23 @@ function DressMe(props) {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input
-            type="text"
-            // value={name}
-            onChange={(e) => setDetails({ ...details, name: e.target.value })}
-          />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <br></br>
         <br></br>
-        {/* <label>
+        <label>
           Last Name:
           <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </label>
         <br></br>
-        <br></br> */}
+        <br></br>
         <label>
           Phone Number:
-          <input
-            type="text"
-            // value={phone}
-            onChange={(e) => setDetails({ ...details, phone: e.target.value })}
-          />
+          <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </label>
         <br></br>
         <br></br>
-        {/* <label>
+        <label>
           Full Address:
           <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
         </label>
@@ -212,48 +220,12 @@ function DressMe(props) {
         />
         <div>{budget}</div>
         <br></br>
-        <br></br> */}
+        <br></br>
 
         <input type="submit" />
       </form>
     </div>
   );
 }
-
-{
-  /* <div id="result"></div>
-      
-<script>
-    function displayRadioValue() {
-        var ele = document.getElementsByName('gender');
-          
-        for(i = 0; i < ele.length; i++) {
-            if(ele[i].checked)
-            document.getElementById("result").innerHTML
-                    = "Gender: "+ele[i].value;
-        }
-    }
-</script> */
-}
-
-// function DressMe() {
-//   return (
-//     <>
-//       <main>
-//         <h2>DRESS MEE</h2>
-//       </main>
-//       <nav>
-//         <Link to="/">Home</Link>
-//       </nav>
-//       <form onSubmit={(x) => console.log(x)}>
-//         <label>
-//           Name:
-//           <input type="text" value={4} onChange={(y) => console.log(y)} />
-//         </label>
-//         <input type="submit" value="Submit" />
-//       </form>
-//     </>
-//   );
-// }
 
 export default DressMe;

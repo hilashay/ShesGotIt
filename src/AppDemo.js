@@ -3,7 +3,6 @@ import "./App.css";
 import homepage from "./homepage.jpeg";
 import hand from "./hand.png";
 import bags from "./bags.png";
-import Entries from "./routes/Entries";
 // import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -94,7 +93,6 @@ function HomePage() {
 }
 
 function App() {
-  // return <Entries entries={[["idanHaviv", "haviv"]]} />;
   return (
     <div className="App">
       <Routes>
