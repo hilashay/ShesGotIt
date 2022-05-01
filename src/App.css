@@ -1,14 +1,10 @@
 * {
-  /* display: flex; */
   color: black;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Josefin Slab", serif;
   font-size: 18px;
   text-align: center;
   justify-content: center;
-}
-
-.App {
-  text-align: center;
+  /* text-transform: uppercase; */
 }
 
 .App-logo {
@@ -27,43 +23,10 @@
   color: white;
 }
 
-.App-body {
-  background-color: #fdfcf9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .hr {
   background-color: black;
   height: 1px;
   width: 50%;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  font-size: medium;
-  font-family: "Courier New", Courier, monospace;
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  margin-bottom: 50px;
-}
-
-li a:hover {
-  font-weight: bold;
 }
 
 h1 {
@@ -76,24 +39,23 @@ h2 {
   font-size: 30px;
   line-height: 0px;
 }
-
-.first-p {
-  text-align: center;
-  width: 1000px;
+.dress-me-button-container {
+  display: flex;
 }
-
-.btn-dress-me {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: rgba(133, 78, 46, 0.739);
+.dress-me-button {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: rgba(133, 78, 46, 0.739);
+  /* margin-left: 46%; */
+  margin-bottom: 40px;
 }
 
-.btn-dress-me:hover {
+.dress-me-button:hover {
   background-color: rgb(187, 150, 121);
   font-weight: bold;
   font-size: 20px;
@@ -121,12 +83,12 @@ h2 {
   height: 400px;
   display: inline-block;
   text-align: right;
-  margin-left: 650px;
-  /* float: right; */
+  margin-left: 1000px;
 }
 
 .bags-text {
   text-align: right;
+  margin-left: 100px;
 }
 
 footer p {
