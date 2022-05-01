@@ -2,22 +2,7 @@ import "../Reviews.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import DressMe from "../routes/dressme";
-import { Entries, AlwaysWearEntries } from "./Entries";
-
-// function Entries(props) {
-//   return props.entries.map((entry) => (
-//     <div>
-//       {formatKey(entry[0])}: {entry[1]}
-//     </div>
-//   ));
-// }
-// const Entries = (props) => {
-//   return props.entries.map((entry) => (
-//     <div>
-//       {formatKey(entry[0])}: {entry[1]}
-//     </div>
-//   ));
-// };
+import { Entries, AlwaysWearEntries } from "./Compopnents.jsx/Entries";
 
 function Success(props) {
   const details = props.details;
@@ -25,7 +10,6 @@ function Success(props) {
   const entries = Object.entries(details);
   const alwaysWearEntries = Object.entries(allValues);
 
-  console.log("always|:", alwaysWearEntries);
   return (
     <div className="reviews-container">
       <header>
@@ -44,20 +28,3 @@ function Success(props) {
 }
 
 export default Success;
-
-// const hila =
-//     {name: 'hila', lastName: 'idan', phone: 'shay'}
-
-// for ( var detail in hila ) {
-//     let keys = detail
-//       console.log(keys)
-//   }
-
-// for (let i = 0; i < Object.values(hila).length; i++) {
-//     let values = Object.values(hila)[i]
-//   console.log(values)
-// }
-
-// for (let i = 0; i < Object.values(details).length; i++) {
-//     console.log(Object.keys(details)[i]+" "+Object.values(details)[i])
-//    }

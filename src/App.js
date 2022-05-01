@@ -3,7 +3,7 @@ import "./App.css";
 import homepage from "./homepage.jpeg";
 import hand from "./hand.png";
 import bags from "./bags.png";
-import Entries from "./routes/Entries";
+import { Entries } from "./routes/Compopnents.jsx/Entries";
 // import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -21,7 +21,6 @@ import DressMe from "./routes/dressme";
 import Success from "./routes/success";
 
 function HomePage() {
-  // console.log("logo:", logo);
   let navigate = useNavigate();
   return (
     <div className="App">
@@ -94,7 +93,6 @@ function HomePage() {
 }
 
 function App() {
-  // return <Entries entries={[["idanHaviv", "haviv"]]} />;
   return (
     <div className="App">
       <Routes>

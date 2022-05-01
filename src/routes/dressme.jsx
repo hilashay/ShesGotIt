@@ -33,13 +33,9 @@ function DressMe(props) {
     other: "",
   });
 
-  console.log("allValues ", allValues);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const changeHandler = (e) => {
-    console.log("e.target.value: ", e.target.value);
-    console.log("e.target.name ", e.target.name);
-    console.log("all", allValues);
     setAllValues({ ...allValues, [e.target.name]: e.target.value });
   };
 
@@ -48,17 +44,7 @@ function DressMe(props) {
       alert("Phone number is not valid, type numbers");
     }
     if (details.phone && details.name && details.lastName) {
-      console.log("Name: " + details.name);
-      console.log("Last Name: " + details.lastName);
-      console.log("Phone Number: " + details.phone);
-      console.log("Full Adress: " + details.address);
-      console.log("Shirt Size: " + details.shirtSize);
-      console.log("Pants Size: " + details.pantsSize);
-      console.log("Never Wear: " + details.neverWear);
-      console.log("Always Wear: " + JSON.stringify(allValues));
-      console.log("Budget " + details.budget);
       event.preventDefault();
-
       setIsSubmitted(true);
     } else {
       alert("You have to fill all the fields");
