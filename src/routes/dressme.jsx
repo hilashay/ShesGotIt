@@ -18,9 +18,9 @@ function DressMe(props) {
     lastName: "",
     phone: "",
     address: "",
-    shirtSize: "",
-    pantsSize: "",
-    neverWear: "",
+    shirtSize: "XXS",
+    pantsSize: "36",
+    neverWear: "Skinny",
     budget: "",
   });
 
@@ -33,18 +33,21 @@ function DressMe(props) {
     other: "",
   });
 
+  console.log("allValues ", allValues);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const changeHandler = (e) => {
+    console.log("e.target.value: ", e.target.value);
+    console.log("e.target.name ", e.target.name);
+    console.log("all", allValues);
     setAllValues({ ...allValues, [e.target.name]: e.target.value });
-    console.log("value: ", e.target.value);
   };
 
   const handleSubmit = (event) => {
     if (isNaN(details.phone)) {
       alert("Phone number is not valid, type numbers");
     }
-    if (details.phone) {
+    if (details.phone && details.name && details.lastName) {
       console.log("Name: " + details.name);
       console.log("Last Name: " + details.lastName);
       console.log("Phone Number: " + details.phone);
@@ -63,7 +66,7 @@ function DressMe(props) {
     }
   };
   return isSubmitted ? (
-    <Success details={details} />
+    <Success details={details} allValues={allValues} />
   ) : (
     <div>
       <main>
@@ -75,39 +78,40 @@ function DressMe(props) {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
+          <input type="text" onChange={(e) => setDetails({ ...details, name: e.target.value })} />
+        </label>
+        <br></br>
+        <br></br>
+        <label>
+          Last Name:
           <input
             type="text"
-            // value={name}
-            onChange={(e) => setDetails({ ...details, name: e.target.value })}
+            onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
           />
         </label>
         <br></br>
         <br></br>
-        {/* <label>
-          Last Name:
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-        </label>
-        <br></br>
-        <br></br> */}
         <label>
           Phone Number:
-          <input
-            type="text"
-            // value={phone}
-            onChange={(e) => setDetails({ ...details, phone: e.target.value })}
-          />
+          <input type="text" onChange={(e) => setDetails({ ...details, phone: e.target.value })} />
         </label>
         <br></br>
         <br></br>
-        {/* <label>
+        <label>
           Full Address:
-          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+          <input
+            type="text"
+            onChange={(e) => setDetails({ ...details, address: e.target.value })}
+          />
         </label>
         <br></br>
         <br></br>
         <label>
           Shirt Size:
-          <select className="option" onChange={(e) => setShirtSize(e.target.value)}>
+          <select
+            className="option"
+            onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
+          >
             <option>XXS</option>
             <option>XS</option>
             <option>S</option>
@@ -121,7 +125,10 @@ function DressMe(props) {
         <br></br>
         <label>
           Pants Size:
-          <select className="option" onChange={(e) => setPantsSize(e.target.value)}>
+          <select
+            className="option"
+            onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
+          >
             <option>36</option>
             <option>38</option>
             <option>40</option>
@@ -134,7 +141,10 @@ function DressMe(props) {
         <br></br>
         <label>
           Never Wear:
-          <select className="option" onChange={(e) => setNeverWear(e.target.value)}>
+          <select
+            className="option"
+            onChange={(e) => setDetails({ ...details, neverWear: e.target.value })}
+          >
             <option>Skinny</option>
             <option>Tight</option>
             <option>Loose</option>
@@ -148,42 +158,18 @@ function DressMe(props) {
         <br></br>
         <label>
           Always Wear:<br></br>
-          <input
-            type="checkbox"
-            value="skinny"
-            name="allValues"
-            id="skinny"
-            onClick={changeHandler}
-          />
+          <input type="checkbox" value="skinny" name="skinny" id="skinny" onClick={changeHandler} />
           Skinny<br></br>
-          <input
-            type="checkbox"
-            value="tight"
-            name="allValues"
-            id="tight"
-            onChange={changeHandler}
-          />
+          <input type="checkbox" value="tight" name="tight" id="tight" onChange={changeHandler} />
           Tight<br></br>
-          <input
-            type="checkbox"
-            value="loose"
-            name="allValues"
-            id="loose"
-            onChange={changeHandler}
-          />
+          <input type="checkbox" value="loose" name="loose" id="loose" onChange={changeHandler} />
           Loose <br></br>
-          <input
-            type="checkbox"
-            value="slim"
-            name="allValues"
-            id="slim"
-            onChange={changeHandler}
-          />{" "}
-          Slim<br></br>
+          <input type="checkbox" value="slim" name="slim" id="slim" onChange={changeHandler} /> Slim
+          <br></br>
           <input
             type="checkbox"
             value="color"
-            name="allValues"
+            name="color"
             id="color"
             onChange={changeHandler}
           />{" "}
@@ -191,7 +177,7 @@ function DressMe(props) {
           <input
             type="checkbox"
             value="other"
-            name="allValues"
+            name="other"
             id="other"
             onChange={changeHandler}
           />{" "}
@@ -206,14 +192,13 @@ function DressMe(props) {
           step={100}
           id="budget"
           name="budget"
-          onChange={(e) => setBudget(e.target.value)}
+          onChange={(e) => setDetails({ ...details, budget: e.target.value })}
           min={0}
           max={10000}
         />
-        <div>{budget}</div>
+        <div>{details.budget}</div>
         <br></br>
-        <br></br> */}
-
+        <br></br>
         <input type="submit" />
       </form>
     </div>
