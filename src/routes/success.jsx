@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DressMe from "../routes/dressme";
 import { Entries, AlwaysWearEntries } from "./Compopnents.jsx/Entries";
 
 function Success(props) {

@@ -1,18 +1,11 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-  Link,
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
+import DressMeIntro from "../routes/Compopnents.jsx/DressMeIntro";
+import SelectInput from "./Compopnents.jsx/SelectInput";
+import TextInput from "./Compopnents.jsx/TextInput";
 import Success from "./success";
 
-function DressMe(props) {
-  let navigate = useNavigate();
 
+function DressMe(props) {
   const [details, setDetails] = useState({
     name: "",
     lastName: "",
@@ -55,76 +48,34 @@ function DressMe(props) {
     <Success details={details} allValues={allValues} />
   ) : (
     <div>
-      <main>
-        <h2>DRESS ME</h2>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
+      <DressMeIntro />
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" onChange={(e) => setDetails({ ...details, name: e.target.value })} />
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Last Name:
-          <input
-            type="text"
-            onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
-          />
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Phone Number:
-          <input type="text" onChange={(e) => setDetails({ ...details, phone: e.target.value })} />
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Full Address:
-          <input
-            type="text"
-            onChange={(e) => setDetails({ ...details, address: e.target.value })}
-          />
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Shirt Size:
-          <select
-            className="option"
-            onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
-          >
-            <option>XXS</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-            <option>XXL</option>
-          </select>
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Pants Size:
-          <select
-            className="option"
-            onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
-          >
-            <option>36</option>
-            <option>38</option>
-            <option>40</option>
-            <option>42</option>
-            <option>44</option>
-            <option>46</option>
-          </select>
-        </label>
-        <br></br>
-        <br></br>
+        <TextInput
+          label="Name: "
+          onChange={(e) => setDetails({ ...details, name: e.target.value })}
+        />
+        <TextInput
+          label="Last Name: "
+          onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+        />
+        <TextInput
+          label="Phone Number: "
+          onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+        />
+        <TextInput
+          label=" Full Address: "
+          onChange={(e) => setDetails({ ...details, address: e.target.value })}
+        />
+        <SelectInput
+          label="Shirt Size: "
+          onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
+          sizes={["XS", "S", "M", "L", "XL", "XXL"]}
+        />
+        <SelectInput
+          label="Pants Size: "
+          onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
+          sizes={["36", "38", "40", "42", "44", "46"]}
+        />
         <label>
           Never Wear:
           <select
@@ -185,46 +136,10 @@ function DressMe(props) {
         <div>{details.budget}</div>
         <br></br>
         <br></br>
-        <input type="submit" />
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );
 }
-
-{
-  /* <div id="result"></div>
-      
-<script>
-    function displayRadioValue() {
-        var ele = document.getElementsByName('gender');
-          
-        for(i = 0; i < ele.length; i++) {
-            if(ele[i].checked)
-            document.getElementById("result").innerHTML
-                    = "Gender: "+ele[i].value;
-        }
-    }
-</script> */
-}
-
-// function DressMe() {
-//   return (
-//     <>
-//       <main>
-//         <h2>DRESS MEE</h2>
-//       </main>
-//       <nav>
-//         <Link to="/">Home</Link>
-//       </nav>
-//       <form onSubmit={(x) => console.log(x)}>
-//         <label>
-//           Name:
-//           <input type="text" value={4} onChange={(y) => console.log(y)} />
-//         </label>
-//         <input type="submit" value="Submit" />
-//       </form>
-//     </>
-//   );
-// }
 
 export default DressMe;
