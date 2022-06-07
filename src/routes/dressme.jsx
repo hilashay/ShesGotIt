@@ -1,9 +1,11 @@
 import { useState } from "react";
-import DressMeIntro from "../routes/Compopnents.jsx/DressMeIntro";
-import SelectInput from "./Compopnents.jsx/SelectInput";
-import TextInput from "./Compopnents.jsx/TextInput";
+import DressMeIntro from "./Components/DressMeIntro";
+import SelectInput from "./Components/SelectInput";
+import TextInput from "./Components/TextInput";
 import Success from "./success";
-
+import CheckboxInput from "./Components/CheckboxInput";
+import ErrorMessage from "./Components/ErrorMessage";
+import Header from "./Components/Header";
 
 function DressMe(props) {
   const [details, setDetails] = useState({
@@ -11,13 +13,22 @@ function DressMe(props) {
     lastName: "",
     phone: "",
     address: "",
-    shirtSize: "XXS",
-    pantsSize: "36",
-    neverWear: "Skinny",
+    shirtSize: "",
+    pantsSize: "",
     budget: "",
   });
+  // console.log("details: ", details);
 
-  const [allValues, setAllValues] = useState({
+  const [alwaysWearSelect, setAlwaysWearSelect] = useState({
+    skinny: "",
+    tight: "",
+    loose: "",
+    slim: "",
+    someColor: "",
+    other: "",
+  });
+
+  const [neverWearSelect, setNeverWearSelect] = useState({
     skinny: "",
     tight: "",
     loose: "",
@@ -27,9 +38,16 @@ function DressMe(props) {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [x, setX] = useState(0);
+  // console.log("x: ", x);
+  const neverWearChangeHandler = (e) => {
+    setNeverWearSelect({ ...neverWearSelect, [e.target.name]: e.target.value });
+    console.log("e1:", e.target.name, e.target.value);
+  };
 
-  const changeHandler = (e) => {
-    setAllValues({ ...allValues, [e.target.name]: e.target.value });
+  const alwaysWearChangeHandler = (e) => {
+    setAlwaysWearSelect({ ...alwaysWearSelect, [e.target.name]: e.target.value });
+    console.log("e2:", e.target.name, e.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -41,103 +59,134 @@ function DressMe(props) {
       setIsSubmitted(true);
     } else {
       alert("You have to fill all the fields");
+      <ErrorMessage />;
       event.preventDefault();
     }
   };
   return isSubmitted ? (
-    <Success details={details} allValues={allValues} />
+    <Success
+      details={details}
+      alwaysWearSelect={alwaysWearSelect}
+      neverWearSelect={neverWearSelect}
+    />
   ) : (
     <div>
+      <Header />
       <DressMeIntro />
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          label="Name: "
-          onChange={(e) => setDetails({ ...details, name: e.target.value })}
-        />
-        <TextInput
-          label="Last Name: "
-          onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
-        />
-        <TextInput
-          label="Phone Number: "
-          onChange={(e) => setDetails({ ...details, phone: e.target.value })}
-        />
-        <TextInput
-          label=" Full Address: "
-          onChange={(e) => setDetails({ ...details, address: e.target.value })}
-        />
-        <SelectInput
-          label="Shirt Size: "
-          onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
-          sizes={["XS", "S", "M", "L", "XL", "XXL"]}
-        />
-        <SelectInput
-          label="Pants Size: "
-          onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
-          sizes={["36", "38", "40", "42", "44", "46"]}
-        />
-        <label>
+      <div className="input-container">
+        <form onSubmit={handleSubmit}>
+          <TextInput
+            label="Name: "
+            onChange={(e) => setDetails({ ...details, name: e.target.value })}
+          />
+          <TextInput
+            label="Last Name: "
+            onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+          />
+          <TextInput
+            label="Phone Number: "
+            onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+            minlength="10"
+          />
+          <TextInput
+            label=" Full Address: "
+            onChange={(e) => setDetails({ ...details, address: e.target.value })}
+          />
+          <SelectInput
+            label="Shirt Size:"
+            counter={x}
+            onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
+            sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
+          />
+          <SelectInput
+            label="Pants Size:"
+            onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
+            sizes={["", "36", "38", "40", "42", "44", "46"]}
+          />
           Never Wear:
-          <select
-            className="option"
-            onChange={(e) => setDetails({ ...details, neverWear: e.target.value })}
-          >
-            <option>Skinny</option>
-            <option>Tight</option>
-            <option>Loose</option>
-            <option>Slim</option>
-            <option>Some Color </option>
-            <option>Golf</option>
-            <option>Something else</option>
-          </select>
-        </label>
-        <br></br>
-        <br></br>
-        <label>
-          Always Wear:<br></br>
-          <input type="checkbox" value="skinny" name="skinny" id="skinny" onClick={changeHandler} />
-          Skinny<br></br>
-          <input type="checkbox" value="tight" name="tight" id="tight" onChange={changeHandler} />
-          Tight<br></br>
-          <input type="checkbox" value="loose" name="loose" id="loose" onChange={changeHandler} />
-          Loose <br></br>
-          <input type="checkbox" value="slim" name="slim" id="slim" onChange={changeHandler} /> Slim
-          <br></br>
-          <input
-            type="checkbox"
+          <br />
+          <CheckboxInput
+            value="skinny"
+            name="skinny"
+            label="Skinny"
+            onChange={neverWearChangeHandler}
+          />
+          <CheckboxInput
+            value="tight"
+            name="tight"
+            label="Tight"
+            onChange={neverWearChangeHandler}
+          />
+          <CheckboxInput
+            value="loose"
+            name="loose"
+            label="Loose"
+            onChange={neverWearChangeHandler}
+          />
+          <CheckboxInput value="slim" name="slim" label="Slim" onChange={neverWearChangeHandler} />
+          <CheckboxInput
             value="color"
             name="color"
-            id="color"
-            onChange={changeHandler}
-          />{" "}
-          Some Color<br></br>
-          <input
-            type="checkbox"
+            label="Some Color"
+            onChange={neverWearChangeHandler}
+          />
+          <CheckboxInput
             value="other"
             name="other"
-            id="other"
-            onChange={changeHandler}
-          />{" "}
-          Other<br></br>
-        </label>
-        <div id="result"></div>
-        <br></br>
-        <br></br>
-        <label for="budget">Budget</label>
-        <input
-          type="range"
-          step={100}
-          id="budget"
-          name="budget"
-          onChange={(e) => setDetails({ ...details, budget: e.target.value })}
-          min={0}
-          max={10000}
-        />
-        <div>{details.budget}</div>
-        <br></br>
-        <br></br>
-        <input type="submit" value="Submit" />
-      </form>
+            label="Other "
+            onChange={neverWearChangeHandler}
+          />
+          <br />
+          Always Wear:
+          <br />
+          <CheckboxInput
+            value="skinny"
+            name="skinny"
+            label="Skinny"
+            onChange={alwaysWearChangeHandler}
+          />
+          <CheckboxInput
+            value="tight"
+            name="tight"
+            label="Tight"
+            onChange={alwaysWearChangeHandler}
+          />
+          <CheckboxInput
+            value="loose"
+            name="loose"
+            label="Loose"
+            onChange={alwaysWearChangeHandler}
+          />
+          <CheckboxInput value="slim" name="slim" label="Slim" onChange={alwaysWearChangeHandler} />
+          <CheckboxInput
+            value="color"
+            name="color"
+            label="Some Color"
+            onChange={alwaysWearChangeHandler}
+          />
+          <CheckboxInput
+            value="other"
+            name="other"
+            label="Other "
+            onChange={alwaysWearChangeHandler}
+          />
+          <br />
+          <label for="budget">Budget</label>
+          <input
+            type="range"
+            step={100}
+            id="budget"
+            name="budget"
+            onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+            min={0}
+            max={10000}
+          />
+          <div style={{ display: "inline" }}>{details.budget}</div>
+          <br></br>
+          <br></br>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     </div>
   );
 }

@@ -12,6 +12,8 @@ export const Entries = (props) => {
   ));
 };
 
-export const AlwaysWearEntries = (props) => {
-  return props.alwaysWearEntries.map((entry) => <div key={entry}>{formatKey(entry[1])}</div>);
+export const AlwaysAndNeverWearEntries = (props) => {
+  return props.alwaysAndNeverWearEntries.map((entry) => (
+    <div key={entry}>{formatKey(entry[1])}</div>
+  ));
 };

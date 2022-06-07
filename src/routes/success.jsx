@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Entries, AlwaysWearEntries } from "./Compopnents.jsx/Entries";
+import { Entries, AlwaysAndNeverWearEntries } from "./Components/Entries";
 
 function Success(props) {
   const details = props.details;
-  const allValues = props.allValues;
+  const alwaysWearSelect = props.alwaysWearSelect;
+  const neverWearSelect = props.neverWearSelect;
   const entries = Object.entries(details);
-  const alwaysWearEntries = Object.entries(allValues);
+  const alwaysEntries = Object.entries(alwaysWearSelect);
+  const neverWearEntries = Object.entries(neverWearSelect);
 
   return (
     <div className="reviews-container">
@@ -14,10 +16,13 @@ function Success(props) {
         <h2>Perfect! Ive got all i need!</h2>
         <div>
           <Entries entries={entries} />
-          <br></br>
-          Always wear: <AlwaysWearEntries alwaysWearEntries={alwaysWearEntries} />
+          Never wear: <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={neverWearEntries} />
+          <br />
+          Always wear:
+          <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={alwaysEntries} />
         </div>
       </header>
+      <br />
       <nav>
         <Link to="/">Home</Link>
       </nav>

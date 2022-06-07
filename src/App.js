@@ -3,10 +3,10 @@ import Reviews from "./routes/reviews";
 import About from "./routes/about";
 import DressMe from "./routes/dressme";
 import Success from "./routes/success";
-import Header from "./routes/Compopnents.jsx/Header";
-import Intro from "./routes/Compopnents.jsx/Intro";
-import DressMeButton from "./routes/Compopnents.jsx/DressMeButton";
-import MyJobPart from "./routes/Compopnents.jsx/MyJobPart";
+import Header from "./routes/Components/Header";
+import Intro from "./routes/Components/Intro";
+import DressMeButton from "./routes/Components/DressMeButton";
+import MyJobPart from "./routes/Components/MyJobPart";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -21,7 +21,7 @@ function HomePage() {
   let navigate = useNavigate();
 
   return (
-    <div className="App">
+    <div>
       <Header />
       <Intro />
       <DressMeButton />
@@ -36,7 +36,7 @@ function HomePage() {
 
 function App() {
   return (
-    <div className="App">
+    <div className="conatiner">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="dressme" element={<DressMe />} />

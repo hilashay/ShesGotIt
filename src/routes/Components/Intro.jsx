@@ -9,12 +9,14 @@ import {
   useNavigate,
 } from "react-router-dom";
 import "../../App.css";
+import homepage from "../../homepage.jpeg";
 
 const Intro = () => {
   return (
     <div>
       {" "}
       <h1>Meet she's got it</h1>
+      <img src={homepage} className="App-main-img" alt="Logo" />
       <h2>No Need To Spend More Time For Shopping!</h2>
       <p className="first-p">
         As a woman to a man who doesn't understand too much in fashion. Or even a combination of
