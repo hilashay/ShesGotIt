@@ -6,6 +6,7 @@ import Success from "./success";
 import CheckboxInput from "./Components/CheckboxInput";
 import ErrorMessage from "./Components/ErrorMessage";
 import Header from "./Components/Header";
+import ErrorValidation from "./Components/ErrorValidation";
 
 function DressMe(props) {
   const [details, setDetails] = useState({
@@ -17,17 +18,6 @@ function DressMe(props) {
     pantsSize: "",
     budget: "",
   });
-
-  const [shouldRenderError, setShouldRenderError] = useState(false);
-
-  useEffect(() => {
-    if (details.lastName.length === 0) {
-      setShouldRenderError(true);
-    } else {
-      setShouldRenderError(false);
-    }
-  }, [details]);
-  // console.log("details: ", details);
 
   const [alwaysWearSelect, setAlwaysWearSelect] = useState({
     skinny: "",
@@ -88,23 +78,23 @@ function DressMe(props) {
               label="Name: "
               onChange={(e) => setDetails({ ...details, name: e.target.value })}
             />
+            <ErrorValidation field={details.name} />
             <TextInput
               label="Last Name: "
               onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
             />
-            {/* <ErrorMessage field={details.lastName} /> */}
-            {/* {details.lastName.length === 0 ? (
-            <div style={{ height: 100, width: 100, backgroundColor: "red" }} />
-          ) : null} */}
+            <ErrorValidation field={details.lastName} />
             <TextInput
               label="Phone Number: "
               onChange={(e) => setDetails({ ...details, phone: e.target.value })}
               minlength="10"
             />
+            <ErrorValidation field={details.phone} />
             <TextInput
               label=" Full Address: "
               onChange={(e) => setDetails({ ...details, address: e.target.value })}
             />
+            <ErrorValidation field={details.address} />
             {/* <SelectInput
               label="Shirt Size:"
               counter={x}

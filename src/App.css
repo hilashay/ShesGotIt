@@ -113,6 +113,15 @@ h2 {
   font-style: italic;
   font-size: smaller;
 }
+
+.requirederror {
+  display: block;
+  text-align: right;
+  color: rgb(253, 0, 0);
+  font-style: italic;
+  font-size: smaller;
+}
+
 .input-container {
   color: black;
   border: thin;
