@@ -5,6 +5,7 @@ const TextInput = (props) => {
     <div className="input-group">
       <label className="label-input">{props.label}</label>
       <input type="text" onChange={props.onChange} required minlength={props.minlength} />
+      <span class="required">*Required</span>
       <br></br>
       <br></br>
     </div>

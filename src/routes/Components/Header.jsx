@@ -15,10 +15,6 @@ import "../../App.css";
 const Header = () => {
   return (
     <header className="App-header">
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@200;300&display=swap');
-      </style>
       <img src={first} className="App-logo" alt="Logo" />
 
       <br />

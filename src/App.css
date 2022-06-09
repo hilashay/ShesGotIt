@@ -6,6 +6,7 @@
   justify-content: center;
   /* text-transform: uppercase; */
 }
+
 /* .conatiner {
   display: flex;
   padding: 50px;
@@ -74,12 +75,19 @@ h2 {
 }
 
 /* drss me page */
+.required {
+  display: block;
+  text-align: right;
+  color: rgba(121, 121, 121, 0.879);
+  font-style: italic;
+  font-size: smaller;
+}
 .input-container {
   color: black;
   border: thin;
   border-radius: 10px;
   border-style: solid;
-  width: 40%;
+  width: 25%;
   height: 80%;
   padding: 50px;
   display: flex;
@@ -115,10 +123,20 @@ input[type="submit"] {
   cursor: pointer;
   border-radius: 5px;
 }
+/* success page */
 
 .process-container {
   width: 1000px;
   padding: 100px;
+}
+
+.success-cunteiner {
+  color: black;
+  border: thin;
+  border-radius: 10px;
+  border-style: solid;
+  width: 25%;
+  padding: 50px;
 }
 
 .hand-img {

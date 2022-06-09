@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Entries, AlwaysAndNeverWearEntries } from "./Components/Entries";
+import Header from "./Components/Header";
 
 function Success(props) {
   const details = props.details;
@@ -11,10 +12,11 @@ function Success(props) {
   const neverWearEntries = Object.entries(neverWearSelect);
 
   return (
-    <div className="reviews-container">
+    <div>
+      <Header />
       <header>
         <h2>Perfect! Ive got all i need!</h2>
-        <div>
+        <div class="success-cunteiner">
           <Entries entries={entries} />
           Never wear: <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={neverWearEntries} />
           <br />
