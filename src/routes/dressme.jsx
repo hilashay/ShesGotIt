@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DressMeIntro from "./Components/DressMeIntro";
 import SelectInput from "./Components/SelectInput";
 import TextInput from "./Components/TextInput";
@@ -17,6 +17,16 @@ function DressMe(props) {
     pantsSize: "",
     budget: "",
   });
+
+  const [shouldRenderError, setShouldRenderError] = useState(false);
+
+  useEffect(() => {
+    if (details.lastName.length === 0) {
+      setShouldRenderError(true);
+    } else {
+      setShouldRenderError(false);
+    }
+  }, []);
   // console.log("details: ", details);
 
   const [alwaysWearSelect, setAlwaysWearSelect] = useState({
@@ -83,6 +93,9 @@ function DressMe(props) {
             label="Last Name: "
             onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
           />
+          {shouldRenderError ? (
+            <div style={{ height: 100, width: 100, backgroundColor: "red" }} />
+          ) : null}
           <TextInput
             label="Phone Number: "
             onChange={(e) => setDetails({ ...details, phone: e.target.value })}
