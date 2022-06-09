@@ -14,7 +14,7 @@ function Success(props) {
   return (
     <div>
       <Header />
-      <header>
+      <div className="main-container">
         <h2>Perfect! Ive got all i need!</h2>
         <div class="success-cunteiner">
           <Entries entries={entries} />
@@ -23,11 +23,8 @@ function Success(props) {
           Always wear:
           <AlwaysAndNeverWearEntries alwaysAndNeverWearEntries={alwaysEntries} />
         </div>
-      </header>
-      <br />
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
+        <br />
+      </div>
     </div>
   );
 }

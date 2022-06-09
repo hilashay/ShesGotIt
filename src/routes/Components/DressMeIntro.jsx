@@ -16,9 +16,6 @@ const DressMeIntro = () => {
       <main>
         <h2>DRESS ME</h2>
       </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
     </div>
   );
 };

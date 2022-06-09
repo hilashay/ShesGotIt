@@ -4,9 +4,32 @@
   font-size: 18px;
   text-align: center;
   justify-content: center;
+
   /* text-transform: uppercase; */
 }
 
+.link {
+  padding: 10px;
+}
+.link:hover {
+  font-size: 20px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 /* .conatiner {
   display: flex;
   padding: 50px;
@@ -26,6 +49,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-bottom: 30px;
 }
 
 .App-main-img {
@@ -75,6 +99,13 @@ h2 {
 }
 
 /* drss me page */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .required {
   display: block;
   text-align: right;
@@ -90,7 +121,7 @@ h2 {
   width: 25%;
   height: 80%;
   padding: 50px;
-  display: flex;
+  margin-top: 20px;
 }
 
 input[type="text"] {
@@ -133,10 +164,14 @@ input[type="submit"] {
 .success-cunteiner {
   color: black;
   border: thin;
-  border-radius: 10px;
+  border-radius: 8px;
   border-style: solid;
-  width: 25%;
+  border-color: #c0c0c0;
+  width: 40%;
+  height: auto;
   padding: 50px;
+  background-color: #f5f6f8;
+  margin-top: 20px;
 }
 
 .hand-img {

@@ -15,12 +15,22 @@ import "../../App.css";
 const Header = () => {
   return (
     <header className="App-header">
-      <img src={first} className="App-logo" alt="Logo" />
+      <a href="/">
+        <img src={first} className="App-logo" alt="Logo" />
+      </a>
 
       <br />
       <div className="hr"></div>
       <nav>
-        <Link to="/about">About</Link> <Link to="/reviews">Reviews</Link>
+        <Link className="link" to="/">
+          Home
+        </Link>
+        <Link className="link" to="/about">
+          About
+        </Link>{" "}
+        <Link className="link" to="/reviews">
+          Reviews
+        </Link>
       </nav>
       {/* <img src={homepage} className="App-main-img" alt="Logo" /> */}
     </header>
