@@ -48,8 +48,6 @@ function DressMe(props) {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [x, setX] = useState(0);
-  // console.log("x: ", x);
   const neverWearChangeHandler = (e) => {
     setNeverWearSelect({ ...neverWearSelect, [e.target.name]: e.target.value });
     console.log("e1:", e.target.name, e.target.value);
