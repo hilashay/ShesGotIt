@@ -7,6 +7,7 @@ import CheckboxInput from "./Components/CheckboxInput";
 import ErrorMessage from "./Components/ErrorMessage";
 import Header from "./Components/Header";
 import ErrorValidation from "./Components/ErrorValidation";
+import PhoneValidation from "./Components/PhoneValidation";
 
 function DressMe(props) {
   const [details, setDetails] = useState({
@@ -51,9 +52,6 @@ function DressMe(props) {
 
   const handleSubmit = async (event) => {
     setSubmitButtonClicked(true);
-    if (isNaN(details.phone)) {
-      alert("Phone number is not valid, type numbers");
-    }
     if (
       details.phone.length > 1 &&
       details.name.length > 1 &&
@@ -80,7 +78,6 @@ function DressMe(props) {
 
       setIsSubmitted(true);
     } else {
-      // alert("You have to fill all the fields");
       event.preventDefault();
     }
   };
@@ -121,7 +118,7 @@ function DressMe(props) {
               minlength="10"
             />
             {submitButtonClicked ? (
-              <ErrorValidation field={details.phone} />
+              <PhoneValidation phone={details.phone} />
             ) : (
               <span class="required">*Required</span>
             )}

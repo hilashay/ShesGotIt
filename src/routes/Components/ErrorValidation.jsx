@@ -1,14 +1,7 @@
 import React from "react";
 
-// const ErrorValidation = (props) => {
-//   return props.field.length === 0 ? (
-//     <span class="requirederror">*Required</span>
-//   ) : (
-//     <span class="required">*Required</span>
-//   );
-// };
-
 let errorMessage = "";
+
 const ErrorValidation = (props) => {
   if (props.field.length === 0) {
     errorMessage = <span class="requirederror">*Required</span>;
