@@ -69,12 +69,17 @@ function DressMe(props) {
           },
           body: JSON.stringify(details),
         });
+        console.log("res:", res);
+        return await res.json();
 
         // think of what to do with the things you get in res (that's the response)
         // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful
       } catch (error) {
-        console.log(error);
+        console.log("error:", error);
       }
+
+      // think of what to do with the things you get in res (that's the response)
+      // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful
 
       setIsSubmitted(true);
     } else {
