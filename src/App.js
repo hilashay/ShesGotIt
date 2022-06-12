@@ -42,7 +42,7 @@ function App() {
         <Route path="dressme" element={<DressMe />} />
         <Route path="about" element={<About />} />
         <Route path="reviews" element={<Reviews />} />
-        <Route path="dressme/success" element={<Success name={"idab"} />} />
+        {/* <Route path="dressme/success" element={<Success  />} /> */}
       </Routes>
     </div>
   );

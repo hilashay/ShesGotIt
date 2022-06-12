@@ -38,6 +38,7 @@ function DressMe(props) {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
   const neverWearChangeHandler = (e) => {
     setNeverWearSelect({ ...neverWearSelect, [e.target.name]: e.target.value });
     console.log("e1:", e.target.name, e.target.value);
@@ -48,16 +49,38 @@ function DressMe(props) {
     console.log("e2:", e.target.name, e.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    setSubmitButtonClicked(true);
     if (isNaN(details.phone)) {
       alert("Phone number is not valid, type numbers");
     }
-    if (details.phone && details.name && details.lastName) {
+    if (
+      details.phone.length > 1 &&
+      details.name.length > 1 &&
+      details.lastName.length > 1 &&
+      details.address.length > 1 &&
+      details.budget > 0
+    ) {
       event.preventDefault();
+
+      try {
+        const res = await fetch("http://localhost:8080/dressme", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(details),
+        });
+
+        // think of what to do with the things you get in res (that's the response)
+        // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful
+      } catch (error) {
+        console.log(error);
+      }
+
       setIsSubmitted(true);
     } else {
-      alert("You have to fill all the fields");
-      <ErrorMessage />;
+      // alert("You have to fill all the fields");
       event.preventDefault();
     }
   };
@@ -78,23 +101,39 @@ function DressMe(props) {
               label="Name: "
               onChange={(e) => setDetails({ ...details, name: e.target.value })}
             />
-            <ErrorValidation field={details.name} />
+            {submitButtonClicked ? (
+              <ErrorValidation field={details.name} />
+            ) : (
+              <span class="required">*Required</span>
+            )}
             <TextInput
               label="Last Name: "
               onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
             />
-            <ErrorValidation field={details.lastName} />
+            {submitButtonClicked ? (
+              <ErrorValidation field={details.lastName} />
+            ) : (
+              <span class="required">*Required</span>
+            )}
             <TextInput
               label="Phone Number: "
               onChange={(e) => setDetails({ ...details, phone: e.target.value })}
               minlength="10"
             />
-            <ErrorValidation field={details.phone} />
+            {submitButtonClicked ? (
+              <ErrorValidation field={details.phone} />
+            ) : (
+              <span class="required">*Required</span>
+            )}
             <TextInput
               label=" Full Address: "
               onChange={(e) => setDetails({ ...details, address: e.target.value })}
             />
-            <ErrorValidation field={details.address} />
+            {submitButtonClicked ? (
+              <ErrorValidation field={details.address} />
+            ) : (
+              <span class="required">*Required</span>
+            )}
             {/* <SelectInput
               label="Shirt Size:"
               counter={x}
@@ -194,6 +233,11 @@ function DressMe(props) {
               min={0}
               max={10000}
             />
+            {submitButtonClicked ? (
+              <ErrorValidation field={details.budget} />
+            ) : (
+              <span class="required">*Required</span>
+            )}
             <div style={{ display: "inline" }}>{details.budget}</div>
             <br></br>
             <br></br>
