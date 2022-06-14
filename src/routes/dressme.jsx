@@ -63,19 +63,18 @@ function DressMe(props) {
 
       try {
         const res = await fetch("http://localhost:8080/dressme", {
-          method: "POST",
+          method: "POST", // or 'PUT'
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(details),
-        });
-        console.log("res:", res);
-        return await res.json();
-
-        // think of what to do with the things you get in res (that's the response)
-        // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful
+        })
+          .then((response) => response.json())
+          .then((details) => {
+            console.log("Success:", details);
+          });
       } catch (error) {
-        console.log("error:", error);
+        console.error("Error:", error);
       }
 
       // think of what to do with the things you get in res (that's the response)
@@ -136,9 +135,8 @@ function DressMe(props) {
             ) : (
               <span class="required">*Required</span>
             )}
-            {/* <SelectInput
+            <SelectInput
               label="Shirt Size:"
-              counter={x}
               onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
               sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
             />
@@ -146,7 +144,7 @@ function DressMe(props) {
               label="Pants Size:"
               onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
-            /> */}
+            />
             Never Wear:
             <br />
             <CheckboxInput
