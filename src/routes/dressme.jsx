@@ -71,7 +71,9 @@ function DressMe(props) {
         })
           .then((response) => response.json())
           .then((details) => {
-            console.log("Success:", details);
+            console.log("Success:", details).then((alwaysWearSelect) => {
+              console.log("alwaysWearSelect: ", alwaysWearSelect);
+            });
           });
       } catch (error) {
         console.error("Error:", error);
