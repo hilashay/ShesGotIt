@@ -4,12 +4,12 @@ import SelectInput from "./Components/SelectInput";
 import TextInput from "./Components/TextInput";
 import Success from "./success";
 import CheckboxInput from "./Components/CheckboxInput";
-import ErrorMessage from "./Components/ErrorMessage";
 import Header from "./Components/Header";
 import ErrorValidation from "./Components/ErrorValidation";
 import PhoneValidation from "./Components/PhoneValidation";
-
+import ErrorPage from "./Components/ErrorPage";
 function DressMe(props) {
+  const [isError, setIsError] = useState(false);
   const [details, setDetails] = useState({
     name: "",
     lastName: "",
@@ -37,6 +37,8 @@ function DressMe(props) {
     someColor: "",
     other: "",
   });
+
+  console.log("details", details);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
@@ -67,16 +69,18 @@ function DressMe(props) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(details),
-        })
-          .then((response) => response.json())
-          .then((details) => {
-            console.log("Success:", details).then((alwaysWearSelect) => {
-              console.log("alwaysWearSelect: ", alwaysWearSelect);
-            });
-          });
+          body: JSON.stringify({
+            ...details,
+            alwaysWear: alwaysWearSelect,
+            neverWear: neverWearSelect,
+          }),
+        }).then((response) => {
+          console.log("response ", response);
+          return response.json();
+        });
       } catch (error) {
         console.error("Error:", error);
+        setIsError(true);
       }
 
       // think of what to do with the things you get in res (that's the response)
@@ -87,7 +91,9 @@ function DressMe(props) {
       event.preventDefault();
     }
   };
-  return isSubmitted ? (
+  return isError ? (
+    <ErrorPage />
+  ) : isSubmitted ? (
     <Success
       details={details}
       alwaysWearSelect={alwaysWearSelect}
@@ -123,11 +129,7 @@ function DressMe(props) {
               onChange={(e) => setDetails({ ...details, phone: e.target.value })}
               minlength="10"
             />
-            {submitButtonClicked ? (
-              <PhoneValidation phone={details.phone} />
-            ) : (
-              <span class="required">*Required</span>
-            )}
+            <PhoneValidation phone={details.phone} shouldValidate={submitButtonClicked} />
             <TextInput
               label=" Full Address: "
               onChange={(e) => setDetails({ ...details, address: e.target.value })}
