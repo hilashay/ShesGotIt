@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Entries, AlwaysAndNeverWearEntries } from "./Components/Entries";
 import Header from "./Components/Header";
 
 function Success(props) {
-  // console.log(props);
+  let { id } = useParams();
+  console.log("id: ", id);
   const { details, alwaysWearSelect, neverWearSelect } = props;
   // const details = props.details;
   // const alwaysWearSelect = props.alwaysWearSelect;

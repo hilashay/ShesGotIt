@@ -8,7 +8,14 @@ import Header from "./Components/Header";
 import ErrorValidation from "./Components/ErrorValidation";
 import PhoneValidation from "./Components/PhoneValidation";
 import ErrorPage from "./Components/ErrorPage";
+import { useNavigate } from "react-router-dom";
 function DressMe(props) {
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   navigate("/dressme/success/123");
+  // }, []);
+
   const [isError, setIsError] = useState(false);
   const [details, setDetails] = useState({
     name: "",
@@ -38,7 +45,7 @@ function DressMe(props) {
     other: "",
   });
 
-  console.log("details", details);
+  // console.log("details", details);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
@@ -75,6 +82,9 @@ function DressMe(props) {
             neverWear: neverWearSelect,
           }),
         });
+        const body = await res.json();
+        console.log("body ", body);
+        // navigate(`/dressme/success/${res.body._id}`);
       } catch (error) {
         console.log("Error:", error);
         setIsError(true);
@@ -83,7 +93,7 @@ function DressMe(props) {
       // think of what to do with the things you get in res (that's the response)
       // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful
 
-      setIsSubmitted(true);
+      // setIsSubmitted(true);
     } else {
       event.preventDefault();
     }
