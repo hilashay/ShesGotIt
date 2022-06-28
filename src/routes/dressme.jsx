@@ -64,7 +64,7 @@ function DressMe(props) {
       event.preventDefault();
 
       try {
-        const res = await fetch("http://localhost:8080/dressme", {
+        const res = await fetch("http://localhost:8000/dressme", {
           method: "POST", // or 'PUT'
           headers: {
             "Content-Type": "application/json",
@@ -74,12 +74,9 @@ function DressMe(props) {
             alwaysWear: alwaysWearSelect,
             neverWear: neverWearSelect,
           }),
-        }).then((response) => {
-          console.log("response ", response);
-          return response.json();
         });
       } catch (error) {
-        console.error("Error:", error);
+        console.log("Error:", error);
         setIsError(true);
       }
 
@@ -139,7 +136,7 @@ function DressMe(props) {
             ) : (
               <span class="required">*Required</span>
             )}
-            <SelectInput
+            {/* <SelectInput
               label="Shirt Size:"
               onChange={(e) => setDetails({ ...details, shirtSize: e.target.value })}
               sizes={["", "XS", "S", "M", "L", "XL", "XXL"]}
@@ -148,42 +145,42 @@ function DressMe(props) {
               label="Pants Size:"
               onChange={(e) => setDetails({ ...details, pantsSize: e.target.value })}
               sizes={["", "36", "38", "40", "42", "44", "46"]}
-            />
+            /> */}
             Never Wear:
             <br />
             <CheckboxInput
               value="skinny"
-              name="skinny"
+              type="skinny"
               label="Skinny"
               onChange={neverWearChangeHandler}
             />
             <CheckboxInput
               value="tight"
-              name="tight"
+              type="tight"
               label="Tight"
               onChange={neverWearChangeHandler}
             />
             <CheckboxInput
               value="loose"
-              name="loose"
+              type="loose"
               label="Loose"
               onChange={neverWearChangeHandler}
             />
             <CheckboxInput
               value="slim"
-              name="slim"
+              type="slim"
               label="Slim"
               onChange={neverWearChangeHandler}
             />
             <CheckboxInput
               value="color"
-              name="color"
+              type="color"
               label="Some Color"
               onChange={neverWearChangeHandler}
             />
             <CheckboxInput
               value="other"
-              name="other"
+              type="other"
               label="Other "
               onChange={neverWearChangeHandler}
             />
@@ -192,37 +189,37 @@ function DressMe(props) {
             <br />
             <CheckboxInput
               value="skinny"
-              name="skinny"
+              type="skinny"
               label="Skinny"
               onChange={alwaysWearChangeHandler}
             />
             <CheckboxInput
               value="tight"
-              name="tight"
+              type="tight"
               label="Tight"
               onChange={alwaysWearChangeHandler}
             />
             <CheckboxInput
               value="loose"
-              name="loose"
+              type="loose"
               label="Loose"
               onChange={alwaysWearChangeHandler}
             />
             <CheckboxInput
               value="slim"
-              name="slim"
+              type="slim"
               label="Slim"
               onChange={alwaysWearChangeHandler}
             />
             <CheckboxInput
               value="color"
-              name="color"
+              type="color"
               label="Some Color"
               onChange={alwaysWearChangeHandler}
             />
             <CheckboxInput
               value="other"
-              name="other"
+              type="other"
               label="Other "
               onChange={alwaysWearChangeHandler}
             />

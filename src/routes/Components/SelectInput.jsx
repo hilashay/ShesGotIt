@@ -13,7 +13,7 @@ const SelectInput = (props) => {
       }}
     >
       <label className="label-input">{props.label}</label>
-      <select className="option" onChange={props.onChange} required>
+      <select className="option" onChange={props.onChange}>
         {props.sizes.map((size, index) => (
           <option key={size} value={props.sizes[index]}>
             {size}
