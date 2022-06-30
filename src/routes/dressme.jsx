@@ -12,11 +12,6 @@ import { useNavigate } from "react-router-dom";
 function DressMe(props) {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   navigate("/dressme/success/123");
-  // }, []);
-
-  const [isError, setIsError] = useState(false);
   const [details, setDetails] = useState({
     name: "",
     lastName: "",
@@ -26,37 +21,39 @@ function DressMe(props) {
     pantsSize: "",
     budget: "",
   });
-
-  const [alwaysWearSelect, setAlwaysWearSelect] = useState({
-    skinny: "",
-    tight: "",
-    loose: "",
-    slim: "",
-    someColor: "",
-    other: "",
-  });
-
-  const [neverWearSelect, setNeverWearSelect] = useState({
-    skinny: "",
-    tight: "",
-    loose: "",
-    slim: "",
-    someColor: "",
-    other: "",
-  });
-
-  // console.log("details", details);
-
+  const [isError, setIsError] = useState(false);
+  const [alwaysWearSelect, setAlwaysWearSelect] = useState([]);
+  const [neverWearSelect, setNeverWearSelect] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+
   const neverWearChangeHandler = (e) => {
-    setNeverWearSelect({ ...neverWearSelect, [e.target.name]: e.target.value });
-    console.log("e1:", e.target.name, e.target.value);
+    if (e.target.checked && !neverWearSelect.includes(e.target.value)) {
+      setNeverWearSelect((prev) => [...prev, e.target.value]);
+    } else if (!e.target.checked && neverWearSelect.includes(e.target.value)) {
+      for (let i = 0; i < neverWearSelect.length; i++) {
+        if (neverWearSelect[i] === e.target.value) {
+          setNeverWearSelect((prev) => {
+            const temp = [...prev];
+            temp.splice(i, 1);
+            return temp;
+          });
+        }
+      }
+    }
   };
 
   const alwaysWearChangeHandler = (e) => {
-    setAlwaysWearSelect({ ...alwaysWearSelect, [e.target.name]: e.target.value });
-    console.log("e2:", e.target.name, e.target.value);
+    if (e.target.checked && !alwaysWearSelect.includes(e.target.value)) {
+      setAlwaysWearSelect((prev) => [...prev, e.target.value]);
+    } else if (!e.target.checked && alwaysWearSelect.includes(e.target.value)) {
+      //remove e.target.value from the array
+      for (let i = 0; i < alwaysWearSelect.length; i++) {
+        if (alwaysWearSelect[i] === e.target.value) {
+          setAlwaysWearSelect((prev) => prev.filter((x) => x !== e.target.value));
+        }
+      }
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -93,7 +90,7 @@ function DressMe(props) {
       // think of what to do with the things you get in res (that's the response)
       // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#checking_that_the_fetch_was_successful
 
-      // setIsSubmitted(true);
+      setIsSubmitted(true);
     } else {
       event.preventDefault();
     }

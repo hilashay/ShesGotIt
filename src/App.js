@@ -1,6 +1,6 @@
 import "./App.css";
 import Reviews from "./routes/reviews";
-import About from "./routes/about";
+import Login from "./routes/login";
 import DressMe from "./routes/dressme";
 import Success from "./routes/success";
 import Header from "./routes/Components/Header";
@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="dressme" element={<DressMe />} />
-        <Route path="about" element={<About />} />
+        <Route path="login" element={<Login />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="dressme/success/:id" element={<Success />} />
       </Routes>
