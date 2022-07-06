@@ -3,73 +3,44 @@ var bodyParser = require("body-parser");
 const app = express();
 const port = 8000;
 const mongoose = require("mongoose");
-const { Review } = require("./models");
-
-const Schema = mongoose.Schema;
+const { Review, Details, User } = require("./models");
 const cors = require("cors");
+const Schema = mongoose.Schema;
 
 app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-
 // parse application/json
 app.use(bodyParser.json());
-// task - add nodemon
-const getComments = async () => {
-  const commentSchema = new Schema({
-    title: String,
-    body: String,
+
+const getReview = async () => {
+  const reviewSchema = new Schema({
+    comments: String,
+    photos: String,
+    reviewr: String,
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   });
-  const Comment = mongoose.models.Comment
-    ? mongoose.models.Comment
-    : mongoose.model("Comment", commentSchema);
-  // const Comment = mongoose.model("Comment", commentSchema);
-  const comments = await Comment.find(); // read
-  console.log("comments ", comments);
-  return comments;
+
+  const Review = mongoose.models.Review
+    ? mongoose.models.Review
+    : mongoose.model("Review", reviewSchema);
+  // const Review = mongoose.model("Review", reviewSchema);
+  const reviews = await Review.find(); // read
+  return reviews;
 };
 
-//Declare the User Schema
-const userSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  name: String,
-  phone: String,
-  address: String,
-  photoUrl: String,
-});
-//Create a collection
-const User = mongoose.model("User", userSchema);
-
-const author = new User({
-  // _id: new mongoose.Types.ObjectId(),
-  name: "Idan Shay",
-  phone: "0526506130",
-  address: "tzadok 4",
-});
-
-author.save(() => {
-  const comment1 = new Review({
-    comments: "Hi Hi",
-    userId: author._id, // assign the _id from the person
+const getPhotoUrl = async () => {
+  const userSchema = new Schema({
+    _id: Schema.Types.ObjectId,
+    name: String,
+    phone: String,
+    address: String,
+    photoUrl: String,
   });
-  console.log("did it1");
-  comment1.save(() => {
-    console.log("did it2");
-  });
-});
-
-const detailsSchema = new Schema({
-  name: String,
-  lastName: String,
-  phone: String,
-  address: String,
-  shirtSize: String,
-  pantsSize: String,
-  budget: String,
-  alwaysWear: Array,
-  neverWear: Array,
-});
-const Details = mongoose.model("Details", detailsSchema);
+  const User = mongoose.models.User ? mongoose.models.User : mongoose.model("User", userSchema);
+  const users = await User.find();
+  return users;
+};
 
 // const alwaysWearSchema = new Schema({
 //   skinny: String,
@@ -82,10 +53,14 @@ const Details = mongoose.model("Details", detailsSchema);
 
 // const AlwaysWear = mongoose.model("AlwaysWear", alwaysWearSchema);
 
-app.get("/", async (req, res) => {
-  const comments = await getComments();
-  res.send(comments);
-  console.log(comments);
+app.get("/reviews", async (req, res) => {
+  const reviews = await getReview();
+  res.send(reviews);
+});
+
+app.get("/userPhoto", async (req, res) => {
+  const photos = await getPhotoUrl();
+  res.send(photos);
 });
 
 app.post("/dressme", async (req, res) => {
