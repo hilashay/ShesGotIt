@@ -2,12 +2,9 @@ import React from "react";
 
 const Comments = (props) => {
   return (
-    <div>
+    <div className="reviews-container">
       {props.comments?.map((x) => (
-        <>
-          <div>{x.title}</div>
-          <div>{x.body}</div>
-        </>
+        <div className="each-review">{x.comments}</div>
       ))}{" "}
     </div>
   );

@@ -229,3 +229,55 @@ footer p {
     transform: rotate(360deg);
   }
 }
+
+/* //reviews */
+
+.reviews-container {
+  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
+
+.each-review {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: flex-end;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 20px;
+  text-align: end;
+}
+
+.usersPhotos-container {
+  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
+
+.usersPhotos {
+  /* display: flex; */
+  /* align-items: flex-end;
+  justify-content: center;
+  align-self: flex-end; */
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(166, 30, 30, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 20px;
+  text-align: end;
+}
