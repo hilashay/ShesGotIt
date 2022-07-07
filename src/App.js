@@ -1,5 +1,5 @@
 import "./App.css";
-import Reviews from "./routes/reviews";
+import ReviewsPage from "./routes/ReviewsPage";
 import Login from "./routes/login";
 import DressMe from "./routes/dressme";
 import Success from "./routes/success";
@@ -41,7 +41,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="dressme" element={<DressMe />} />
         <Route path="login" element={<Login />} />
-        <Route path="reviews" element={<Reviews />} />
+        <Route path="reviews" element={<ReviewsPage />} />
         <Route path="dressme/success/:id" element={<Success />} />
       </Routes>
     </div>

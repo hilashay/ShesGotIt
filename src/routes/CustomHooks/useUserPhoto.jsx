@@ -6,7 +6,6 @@ const useUserPhoto = () => {
   useEffect(() => {
     fetch("http://localhost:8000/userPhoto") //2. get user photo url from server
       .then((res) => {
-        console.log("photo res ", res);
         return res.json();
       })
       .then((data) => {

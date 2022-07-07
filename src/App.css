@@ -273,11 +273,17 @@ footer p {
   height: 100px;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(166, 30, 30, 0.8);
+  /* border: 1px solid rgba(166, 30, 30, 0.8); */
   padding: 20px;
-  font-size: 30px;
+  font-size: 15px;
   text-align: center;
   margin-top: 50px;
   margin-left: 20px;
   text-align: end;
+  /* position: fixed; */
+}
+
+.photos {
+  width: 80px;
+  height: 80px;
 }

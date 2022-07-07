@@ -6,7 +6,13 @@ const Photos = (props) => {
   return (
     <div className="usersPhotos-container">
       {users?.map((obj) => (
-        <img className="usersPhotos" src={obj.photoUrl} alt="hila" />
+        <>
+          <div className="usersPhotos">
+            {" "}
+            {obj.name}
+            <img className="photos" src={obj.photoUrl} alt="hila" />
+          </div>
+        </>
       ))}{" "}
     </div>
   );

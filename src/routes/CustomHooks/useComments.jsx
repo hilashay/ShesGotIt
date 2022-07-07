@@ -6,16 +6,13 @@ const useComments = () => {
   useEffect(() => {
     fetch("http://localhost:8000/reviews")
       .then((res) => {
-        console.log("res ", res);
         return res.json();
       })
       .then((data) => {
-        console.log("data ", data);
-
         setData(data);
       });
   }, []);
-
+  // console.log(data);
   return data;
 };
 
