@@ -4,20 +4,20 @@ import Reviews from "./Components/Reviews";
 import Review from "./Components/Review";
 import useComments from "./CustomHooks/useComments";
 import ReviewModal from "./Components/ReviewModal";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function ReviewsPage() {
   const [showModal, setShowModal] = useState(false);
   const users = useComments();
   const [selectedReview, setSelectedReview] = useState();
 
-  // const handleOutsideClick = (e) => {
-  //   if (e.target.className !== "review" && e.target.className !== "modal-content") {
-  //     setShowModal(false);
-  //   }
-  // };
+  const modalContainerRef = useRef(null);
+
   const handleContainerClick = (e) => {
-    const modalContentContainer = document.getElementById("review-modal-element-container");
+    if (!showModal) return;
+
+    const modalContentContainer = modalContainerRef.current;
+    console.log("modalContentContainer ", modalContentContainer.getBoundingClientRect());
     const { left, right, bottom, top } = modalContentContainer.getBoundingClientRect();
 
     console.log("e", e);
@@ -43,6 +43,7 @@ function ReviewsPage() {
       />
 
       <ReviewModal
+        ref={modalContainerRef}
         onClose={() => setShowModal(false)}
         showModal={showModal}
         review={selectedReview}

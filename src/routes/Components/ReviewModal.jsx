@@ -1,12 +1,13 @@
 import React from "react";
 
-const ReviewModal = (props) => {
+const ReviewModal = React.forwardRef((props, ref) => {
+  console.log("ReviewModal rendered");
   const { showModal, onClose, review } = props;
   //   console.log("review ", review);
 
   return !showModal ? null : (
     <div className="modal-container">
-      <div id="review-modal-element-container" className="modal-content">
+      <div ref={ref} className="modal-content">
         <div className="modal-header">
           <h4>{review.name}</h4>
         </div>
@@ -20,7 +21,7 @@ const ReviewModal = (props) => {
       </div>
     </div>
   );
-};
+});
 
 // const ReviewModal = (props) => {
 //    <div>modal</div>
