@@ -18,6 +18,7 @@ function ReviewsPage() {
 
     const modalContentContainer = modalContainerRef.current;
     console.log("modalContentContainer ", modalContentContainer.getBoundingClientRect());
+    console.log("a small change");
     const { left, right, bottom, top } = modalContentContainer.getBoundingClientRect();
 
     console.log("e", e);
