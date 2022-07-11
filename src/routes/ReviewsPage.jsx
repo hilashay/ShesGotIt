@@ -11,25 +11,27 @@ function ReviewsPage() {
   const users = useComments();
   const [selectedReview, setSelectedReview] = useState();
 
-  const handleOutsideClick = (e) => {
-    if (e.target.className !== "review" && e.target.className !== "modal-content") {
-      setShowModal(false);
-    }
-  };
   // const handleOutsideClick = (e) => {
-  //   console.log("e", e);
-  //   console.log("e.target.clientX", e.clientX);
-  //   console.log("e.target.clientX", e.clientX);
-  //   console.log("e.target.clientY", e.clientY);
-  //   console.log("e.target.clientY", e.clientY);
-  //   if (showModal && !(e.clientX > 350 && e.clientX < 750 && e.clientY > 250 && e.clientY < 650)) {
+  //   if (e.target.className !== "review" && e.target.className !== "modal-content") {
   //     setShowModal(false);
-  //     console.log("showModal", showModal);
   //   }
   // };
+  const handleContainerClick = (e) => {
+    const modalContentContainer = document.getElementById("review-modal-element-container");
+    const { left, right, bottom, top } = modalContentContainer.getBoundingClientRect();
+
+    console.log("e", e);
+    if (
+      showModal &&
+      !(e.clientX > left && e.clientX < right && e.clientY > top && e.clientY < bottom)
+    ) {
+      setShowModal(false);
+      console.log("showModal", showModal);
+    }
+  };
 
   return (
-    <div onClick={handleOutsideClick}>
+    <div onClick={handleContainerClick}>
       <h1>Reviews</h1>
       <Reviews
         users={users}

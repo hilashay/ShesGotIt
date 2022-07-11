@@ -6,7 +6,7 @@ const ReviewModal = (props) => {
 
   return !showModal ? null : (
     <div className="modal-container">
-      <div className="modal-content">
+      <div id="review-modal-element-container" className="modal-content">
         <div className="modal-header">
           <h4>{review.name}</h4>
         </div>
