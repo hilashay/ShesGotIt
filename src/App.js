@@ -1,7 +1,7 @@
 import "./App.css";
 import ReviewsPage from "./routes/ReviewsPage";
 import Login from "./routes/login";
-import DressMe from "./routes/dressme";
+import DressMe from "./routes/Dressme";
 import Success from "./routes/success";
 import Header from "./routes/Components/Header";
 import Intro from "./routes/Components/Intro";
@@ -17,7 +17,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-function HomePage() {
+const HomePage = () => {
   let navigate = useNavigate();
 
   return (
@@ -32,7 +32,7 @@ function HomePage() {
       </footer>
     </div>
   );
-}
+};
 
 function App() {
   return (

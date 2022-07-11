@@ -2,12 +2,18 @@ import React from "react";
 import Review from "./Review";
 
 const Reviews = (props) => {
-  const { users } = props;
-  console.log(users);
+  const { users, onSelectReview, showModal } = props;
+  // console.log(users)
+
   return (
     <div className="reviews-container">
       {users?.map((x) => (
-        <Review photoUrl={x.photUrl} name={x.name} comment={x.comment} />
+        <Review
+          photoUrl={x.photUrl}
+          name={x.name}
+          comment={x.comment}
+          onClick={() => onSelectReview(x)}
+        />
       ))}
     </div>
   );
