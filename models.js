@@ -43,6 +43,7 @@ const initUser = () => {
 
   User = mongoose.model("User", userSchema);
 };
+
 function init() {
   initReviews();
   initDetails();
