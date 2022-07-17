@@ -4,8 +4,8 @@ const app = express();
 const port = 8000;
 const mongoose = require("mongoose");
 const { Review, Details, User } = require("./models");
+const { getComments, getUsers, getReviewByUserId, getUserByName } = require("./utils");
 const cors = require("cors");
-const Schema = mongoose.Schema;
 // import express from "express";
 // const app = express();
 // import bodyParser from "body-parser";
@@ -21,65 +21,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-const getComments = async () => {
-  const comments = await Review.find();
-  return comments;
-};
-
-const getUsers = async () => {
-  const users = await User.find();
-  return users;
-};
-
-// const getReviewByUserId = async (userId) => {
-//   //get a user from db by user name
-//   const comments = await getComments();
-//   for (let i = 0; i < comments.length; i++) {
-//     const comment = comments[i];
-//     const commentIdString = comment.userId.toString();
-//     return userId === commentIdString ? commentIdString : null;
-//   }
-// };
-
-const getReviewByUserId = async (userId) => {
-  //get a user from db by user name
-  const allComments = await getComments();
-  const commentToString = allComments.map((comment) => comment.userId.toString());
-  const commentsFounded = commentToString.filter((comment) => comment === userId);
-  const wantedComment = allComments.filter((comment) => comment.userId.toString() === userId);
-  return userId === commentsFounded[0] ? wantedComment : "1";
-};
-
-const getUserByName = async (userName) => {
-  const userFounded = await User.find({ name: userName });
-  const userFoundedName = userFounded.map((user) => user.name)[0];
-  return userName === userFoundedName ? userFounded : null;
-};
-
 app.get("/fullreview/:name", async (req, res) => {
   const user = await getUserByName(req.params.name);
   const comment = await getReviewByUserId(user[0]._id.toString());
   res.send({ user, comment });
 });
-
-// app.get("/fullreview/:id", async (req, res) => {
-//   const users = await getUsers();
-//   let user;
-//   let comment;
-//   for (let i = 0; i < users.length; i++) {
-//     user = users[i];
-//     // console.log("user1:", user);
-//     const userId = user.id;
-//     console.log("user1:", user);
-//     console.log("comment:", comment);
-//     comment = await getReviewByUserId(userId);
-//     if (comment.userId === userId) {
-//       console.log("user:", user);
-//     }
-//   }
-//   // console.log("user:", user);
-//   res.send({ comment, user });
-// });
 
 // const alwaysWearSchema = new Schema({
 //   skinny: String,
@@ -137,12 +83,6 @@ app.get("/users/:userName", async (req, res) => {
   console.log("usedUser", usedUser);
   res.send(usedUser);
 });
-// app.get("/users", async (req, res) => {
-//   console.log("req.query.userName ", req.query.userName);
-//   const usedUser = await getUserByName(req.query.userName);
-//   console.log("usedUser", usedUser);
-//   res.send(usedUser);
-// });
 
 app.get("/comments/:userId", async (req, res) => {
   const usedComment = await getReviewByUserId(req.query.userId);
@@ -150,20 +90,6 @@ app.get("/comments/:userId", async (req, res) => {
   // console.log("usedComment", usedComment);
   res.send(usedComment);
 });
-
-// app.get("/:name", async (req, res) => {
-//   // console.log(req.query);
-//   res.send(req.query);
-// });
-// app.get("/user/:name", async (req, res) => {
-//   // console.log(req.query);
-//   res.send(req.query);
-// });
-
-// app.get("/review/userName", async (req, res) => {
-//   // console.log("userName", req);
-//   res.send("ads");
-// });
 
 app.post("/dressme", async (req, res) => {
   // throw Error("Problem");
@@ -193,10 +119,5 @@ const initDB = async () => {
 
 app.listen(port, async () => {
   await initDB();
-  // initModels();
   console.log(`Example app listening on port ${port}`);
-  // await testFunction();
-  // await getReviewByUserId("62c58645846a036c633c440f");
-  // const res = await User.find({ name: "Hila Shay" });
-  // await getUserByName();
 });
