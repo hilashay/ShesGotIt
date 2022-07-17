@@ -27,6 +27,7 @@ app.get("/fullreview/:name", async (req, res) => {
   res.send({ user, comment });
 });
 
+// some other change
 // const alwaysWearSchema = new Schema({
 //   skinny: String,
 //   tight: String,
